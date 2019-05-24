@@ -2,27 +2,38 @@ package com.projectMoldSystems.immobileProject.repository;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.projectMoldSystems.immobileProject.entity.ImmobileEntity;
 import com.projectMoldSystems.immobileProject.entity.OwnerEntity;
+import com.projectMoldSystems.immobileProject.model.SearchForm;
 
-@Repository
-@Transactional
-public interface ImmobileRepository extends JpaRepository<ImmobileEntity, Long>{
 
-	@Query("select p from immobile p where p.owners.name like %?1%")
-	List<ImmobileEntity> findByOwner(String owners);
+public interface ImmobileRepository {
 	
-	@Query("select p from immobile p where p.street like %?1%")
-	List<ImmobileEntity> findByAdress(String street);
 	
-	@Query("select p from immobile p where p.id = ?1")
-	List<ImmobileEntity> findByIds(Long id);
 	
+	//@Query("select p from immobile p where p.owners.name like %?1%")
+//	List<ImmobileEntity> findByOwner(String owners);
+	
+	//@Query("select p from immobile p where p.street like %?1%")
+//	List<ImmobileEntity> findByStreet(String street);
+	
+	//@Query("select p from immobile p where p.id = ?1")
+//	List<ImmobileEntity> findByIds(Long id);
+
+	void save(ImmobileEntity immobileEntity);
+	
+	ImmobileEntity getOne(Long idImmobile);
+	
+	void deleteById(Long idImmobile);
+	
+	List<ImmobileEntity> findAll();
+	
+	ImmobileEntity saveAndFlush(ImmobileEntity immobileEntity);
+	
+	List<ImmobileEntity> search(SearchForm searchForm);
+	
+//	List<ImmobileEntity> search2(Long id, String street, String owners);
+	
+	Boolean valid(ImmobileEntity immobileEntity);
 
 }

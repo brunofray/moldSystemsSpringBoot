@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	  layout:decorator="@{~/base/layout}">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+ 
+	<title>Consultar Registros de Imóveis</title>
+</head>
+<body>
+ 
+<section layout:fragment="content">
+ 
+    <!-- MONTANDO O GRID PARA POSICIONAR O FORMULÁRIO NO CENTRO -->   
+   <div class="mdl-grid">   
+    <div class="mdl-layout-spacer"></div>    
+    <section class="section--center mdl-grid mdl-shadow--4dp mdl-color--white">
+ 
+    <div class="mdl-cell mdl-cell--12-col">
+       <div class="alinhar-centro">
+	   <span style="padding-left:5px;">Consultar Imóveis Cadastrados</span>			  
+       </div>
+ 
+       <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+       <!-- CABEÇALHO DA TABELA -->
+       <thead>
+	  <tr>
+	    <th>Código</th>
+	    <th class="mdl-data-table__cell--non-numeric">CEP</th>
+	    <th class="mdl-data-table__cell--non-numeric">Rua</th>
+	    <th class="mdl-data-table__cell--non-numeric">Número</th>
+	    <th class="mdl-data-table__cell--non-numeric">Complemento</th>
+	    <th class="mdl-data-table__cell--non-numeric">Bairro</th>
+	    <th class="mdl-data-table__cell--non-numeric">Cidade</th>
+	    <th class="mdl-data-table__cell--non-numeric">Estado</th>
+	    <th class="mdl-data-table__cell--non-numeric">Tipo</th>
+	    <th class="mdl-data-table__cell--non-numeric">Preço</th>
+	    <th class="mdl-data-table__cell--non-numeric">Proprietário</th>
+	    <th class="mdl-data-table__cell--non-numeric">Editar</th>
+	    <th class="mdl-data-table__cell--non-numeric">Excluir</th>
+	   </tr>
+	</thead>
+	<tbody>
+	<!-- PREENCHENDO A TABELA COM OS IMÓVEIS CADASTRADOS-->
+	<th:block th:each="immobileModel : ${immobilesModel}">
+	   <tr>
+	    <td th:text="${immobileModel.id}"></td>
+	    <td th:text="${immobileModel.cep}" class="mdl-data-table__cell--non-numeric"></td>
+	    <td th:text="${immobileModel.street}" class="mdl-data-table__cell--non-numeric"></td>
+	    <td th:text="${immobileModel.number}" class="mdl-data-table__cell--non-numeric"></td>
+		<td th:text="${immobileModel.complement}" class="mdl-data-table__cell--non-numeric"></td>
+	    <td th:text="${immobileModel.neighborhood}" class="mdl-data-table__cell--non-numeric"></td>
+	    <td th:text="${immobileModel.city}" class="mdl-data-table__cell--non-numeric"></td>
+	    <td th:text="${immobileModel.state}" class="mdl-data-table__cell--non-numeric"></td>
+	    <td th:text="${immobileModel.types}" class="mdl-data-table__cell--non-numeric"></td>
+	    <td th:text="${immobileModel.price}" class="mdl-data-table__cell--non-numeric"></td>
+	    <td th:text="${immobileModel.owners}" class="mdl-data-table__cell--non-numeric"></td>
+	    <td>
+		<!-- REALIZANDO A REQUEST PARA EDITAR UM CADASTRO -->
+		<form action="#" th:action="@{../edit}" method="get">
+		  <input type="hidden" name="idImmobile" th:value="${immobileModel.id}" />					   			
+		  <button type="submit"  class="mdl-chip__action"><i class="material-icons">create</i></button>
+		</form>
+	    </td>
+            <td>
+		<!-- EXCLUINDO UM REGISTRO CADASTRADO -->
+		<form action="#" th:action="@{../delete}" method="post">					   			 
+		  <input type="hidden" name="idImmobile" th:value="${immobileModel.id}" />								 					   			 
+		  <button type="submit"  class="mdl-chip__action" onclick="return confirm('Deseja realmente excluir esse registro?');"><i class="material-icons">delete</i></button>
+		</form>
+	    </td>
+         </tr>
+      </th:block>	
+   </tbody>	
+</table>
+ 
+ 
+</div>
+ 
+</section>	
+<div class="mdl-layout-spacer"></div>
+</div>
+ 
+</section>
+ 
+</body>
+</html>

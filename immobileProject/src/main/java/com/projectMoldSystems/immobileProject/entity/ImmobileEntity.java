@@ -1,5 +1,6 @@
 package com.projectMoldSystems.immobileProject.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.security.acl.Owner;
 import java.util.List;
@@ -18,8 +19,13 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity(name= "immobile")
-public class ImmobileEntity {
+public class ImmobileEntity implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5915372342858662079L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_immobile")
@@ -64,6 +70,25 @@ public class ImmobileEntity {
 	@ManyToOne
 	private OwnerEntity owners;
 
+	public ImmobileEntity() {
+		
+	}
+	
+	public ImmobileEntity(Long id, String cep, String street, Integer number, String neighborhood, String complement, String city, String state, String types, String price, OwnerEntity owners) {
+		super();
+		this.id = id;
+		this.cep = cep;
+		this.street = street;
+		this.number = number;
+		this.neighborhood = neighborhood;
+		this.complement = complement;
+		this.city = city;
+		this.state = state;
+		this.types = types;
+		this.price = price;
+		this.owners = owners;
+	}
+	
 	public Long getId() {
 		return id;
 	}

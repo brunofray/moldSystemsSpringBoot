@@ -1,0 +1,11 @@
+# Model – Aonde ficam as entidades que representam tabelas de bancos de dados e tipos.
+# Repository – Repositórios do Spring Data JPA responsáveis pelo acesso a dados.
+# Service – Classes de serviço e/ou negócio.
+# Controller – Camada intermediária entre a view e a camada de serviços.
+
+# Diretivas que o Thymeleaf adiciona às estruturas do HTML são iniciadas pelo prefixo th
+
+# th:each: Percorre uma coleção de objetos enviada pelo controller.
+# th:if: Habilita e desabilita controles do HTML de acordo com a condição recebida.
+# th:object: Define o objeto que o controller irá receber e enviar por meio de um formulário.
+# th:field: Faz bind dos atributos do objeto do formulário com os inputs.

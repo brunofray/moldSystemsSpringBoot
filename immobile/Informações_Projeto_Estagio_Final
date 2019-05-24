@@ -1,0 +1,37 @@
+A idéia do projeto é simular um caso como se fosse entregar ao cliente. 
+Portanto, tente fazer uma estimativa de tempo e passar o prazo e o dia de entrega.
+
+*** Cadastro e edição de imóvel ***
+
+- Código do imóvel (autoincremento)
+- CEP (não precisa ser dos correios)
+- Rua
+- Numero
+- Complemento
+- Bairro
+- Cidade
+- Estado 
+- Tipo (Locação ou Venda)
+- Preço
+- Proprietário( Combo de proprietários já cadastrados diretamento via banco de dados). A tabela deve conter id, nome, cpf ou cnpj
+
+*** Validar para não ter dois imóveis no mesmo endereço
+
+*** Listagem de imóveis ***
+- Exibir os imóveis cadastrados e permitir editar ou excluir
+- Ao excluir exibir uma mensagem de confirmação.
+- Filtrar por código do imóvel
+- Filtrar por endereço
+- Filtrar pro proprietário
+
+*** DESAFIO: Imprimir um relatorio dos dados que estão na tela
+
+
+**** CODIGO E BANCO DE DADOS DEVE SER FEITO TODO EM INGLES
+
+** TECNOLOGIAS
+projeto com maven
+mysql
+spring boot + thymeleaf
+jpa / hibernate
+dividir as camadas mvc: FACADE e DAO

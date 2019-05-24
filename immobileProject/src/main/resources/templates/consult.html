@@ -16,21 +16,11 @@
     <div class="mdl-layout-spacer"></div>    
     <section class="section--center mdl-grid mdl-shadow--4dp mdl-color--white">
     
-    <form action="search" method="POST">
-    	<label> Pesquisa: </label>
-    	<input name="search">
-    	<select th:field="*{immobilesEntity}" class="chosen-select form-control" id="immobilesEntity" data-placeholder="immobilesEntity">
-					
-		   			<option th:value="1" th:text="Id"> </option>
-		   			<option th:value="2" th:text="Rua"></option>
-		   			<option th:value="3" th:text="Proprietário"></option>
-		</select>
-		<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" value="Buscar">
-    </form>
     
+    <!-- TODA ESSA PARTE É PESQUISA POR FILTRO SEPARADA
  	<form action="searchOwner" method="POST">
  		<label> Pesquisa por Proprietário: </label>
- 		<input name="nameSearch">
+ 		 <input name="nameSearch"> 
  		<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" value="Buscar">
  	</form>
  	<form style="padding-left:10px;" action="searchId" method="POST">
@@ -43,12 +33,27 @@
  		<input name="idAdress">
  		<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" value="Buscar">
  	</form>
- 	
+ 	 -->
     <div class="mdl-cell mdl-cell--12-col">
        <div class="alinhar-centro">
-	   <span style="padding-left:5px;">Consultar Imóveis Cadastrados</span>			  
+       <!-- PODERIA DEIXAR O FORMULARIO ABAIXO, MAS NESSE QUESITO FICA MELHOR VISUALIZAÇÃO SEM SER EM LINHAS -->
+    <form method="POST" th:action="@{../search}" class="form-inline" role="form" > <!--th:object="${immobilesEntity}" -->
+		<label for="inputId" class="col-lg-2 control-label">Id:</label>
+			<input type="number" class="form-control" id="input-id" name="idSearch" placeholder="Digite o id">
+	
+		<label for="inputStreet" class="col-lg-2 control-label">Rua:</label>
+			<input type="text" class="form-control" id="input-street" name="nameStreet" placeholder="Digite a rua"> <!-- th:field="*{street}" -->
+		
+		<label for="inputOwners" class="col-lg-2 control-label">Proprietário:</label>
+			<input type="text" class="form-control" id="input-owners" name="nameSearch" placeholder="Digite o proprietário">
+	
+		<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" value="Filtrar">Filtrar</button>
+	</form>
        </div>
- 
+       <div class="col-sm-offset-2">
+       <span >Consultar Imóveis Cadastrados</span>
+       </div>
+       
        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
        <!-- CABEÇALHO DA TABELA -->
        <thead>
@@ -70,30 +75,30 @@
 	</thead>
 	<tbody>
 	<!-- PREENCHENDO A TABELA COM OS IMÓVEIS CADASTRADOS-->
-	<th:block th:each="immobileEntity : ${immobilesEntity}">
+	<th:block th:each="immobileEnt : ${immobileEntity}">
 	   <tr>
-	    <td th:text="${immobileEntity.id}"></td>
-	    <td th:text="${immobileEntity.cep}" ></td>
-	    <td th:text="${immobileEntity.street}" ></td>
-	    <td th:text="${immobileEntity.number}" ></td>
-		<td th:text="${immobileEntity.complement}" ></td>
-	    <td th:text="${immobileEntity.neighborhood}" ></td>
-	    <td th:text="${immobileEntity.city}" ></td>
-	    <td th:text="${immobileEntity.state}" ></td>
-	    <td th:text="${immobileEntity.types}" ></td>
-	    <td th:text="${immobileEntity.price}" ></td>
-	    <td th:text="${immobileEntity.owners.name}" ></td>
+	    <td th:text="${immobileEnt.id}"></td>
+	    <td th:text="${immobileEnt.cep}" ></td>
+	    <td th:text="${immobileEnt.street}" ></td>
+	    <td th:text="${immobileEnt.number}" ></td>
+		<td th:text="${immobileEnt.complement}" ></td>
+	    <td th:text="${immobileEnt.neighborhood}" ></td>
+	    <td th:text="${immobileEnt.city}" ></td>
+	    <td th:text="${immobileEnt.state}" ></td>
+	    <td th:text="${immobileEnt.types}" ></td>
+	    <td th:text="${immobileEnt.price}" ></td>
+	    <td th:text="${immobileEnt.owners.name}" ></td>
 	    <td>
 		<!-- REALIZANDO A REQUEST PARA EDITAR UM CADASTRO -->
 		<form action="#" th:action="@{../edit}" method="get">
-		  <input type="hidden" name="idImmobile" th:value="${immobileEntity.id}" />					   			
+		  <input type="hidden" name="idImmobile" th:value="${immobileEnt.id}" />					   			
 		  <button type="submit"  class="mdl-chip__action"><i class="material-icons">create</i></button>
 		</form>
 	    </td>
             <td>
 		<!-- EXCLUINDO UM REGISTRO CADASTRADO -->
 		<form action="#" th:action="@{../delete}" method="post">					   			 
-		  <input type="hidden" name="idImmobile" th:value="${immobileEntity.id}" />								 					   			 
+		  <input type="hidden" name="idImmobile" th:value="${immobileEnt.id}" />								 					   			 
 		  <button type="submit"  class="mdl-chip__action" onclick="return confirm('Deseja realmente excluir esse registro?');"><i class="material-icons">delete</i></button>
 		</form>
 	    </td>
@@ -108,7 +113,9 @@
 </section>	
 <div class="mdl-layout-spacer"></div>
 </div>
- 
+<!--  CASO NECESSÁRIO É POSSIVEL FAZER UM BOTAO PARA ATUALIZAR A PAGINA
+<a style="padding-left:5px;" class="material-icons" th:href="@{/consult}">refresh</a>
+ -->
 </section>
  
 </body>

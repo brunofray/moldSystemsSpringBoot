@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	  layout:decorator="@{~/base/layout}">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+ 
+	<title>Editar cadastro de Imóveis</title>
+ 
+</head>
+<body>
+ 
+<section layout:fragment="content">
+ 
+    <!-- MONTANDO O GRID PARA POSICIONAR O FORMULÁRIO NO CENTRO -->   
+   <div class="mdl-grid">   
+    <div class="mdl-layout-spacer"></div>    
+    <section class="section--center mdl-grid mdl-shadow--4dp mdl-color--white">
+ 
+     <div class="mdl-cell mdl-cell--12-col">
+	<div class="alinhar-centro">
+	  <span style="padding-left:5px;">Editar cadastro de Imóvel</span>			  
+        </div>			
+ 
+       <form action="#" id="formulario-cadastro" th:action="@{../saveAlter}" th:object="${immobileModel}" method="post">
+	<fieldset>
+           <ul class="mdl-list">
+	      <li class="mdl-list__item" th:if="${msg_result}">						 	
+		 <p id="p-message-success" class="success-msg" th:text="${msg_result}" >...</p>		
+	     </li>
+	     
+	     <li class="mdl-list__item">			 		  
+		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+	            <input class="mdl-textfield__input" type="text" id="input-id" th:field="*{id}" readonly="readonly"/>
+		    <label class="mdl-textfield__label" for="input-id">Código...</label>							   
+		 </div>
+	     </li>			 						 
+	     <!-- CAMPO CEP -->
+	 <li class="mdl-list__item">			 		  
+		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		   <input class="mdl-textfield__input" type="text" id="input-cep" th:field="*{cep}"/>
+		   <label class="mdl-textfield__label" for="input-cep">CEP...</label>
+		   <p th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}" class="error-msg">...</p>
+		 </div>
+	 </li>
+ 
+	 <!-- CAMPO RUA -->
+	 <li class="mdl-list__item">
+		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		   <input class="mdl-textfield__input" type="text" id="input-street" th:field="*{street}"/>
+		   <label class="mdl-textfield__label" for="input-street">Rua...</label>
+		   <p th:if="${#fields.hasErrors('street')}" th:errors="*{street}" class="error-msg">...</p>
+		 </div>
+	 </li>
+ 
+	 <!-- CAMPO NUMERO -->
+	 <li class="mdl-list__item">
+		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		   <input class="mdl-textfield__input" type="text" id="input-number" th:field="*{number}"/>
+		   <label class="mdl-textfield__label" for="input-number">Número...</label>
+		   <p th:if="${#fields.hasErrors('number')}" th:errors="*{number}" class="error-msg">...</p>
+		 </div>
+	 </li>
+	 <!-- CAMPO COMPLEMENTO -->
+	 <li class="mdl-list__item">
+		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		   <input class="mdl-textfield__input" type="text" id="input-complement" th:field="*{complement}"/>
+		   <label class="mdl-textfield__label" for="input-complement">Complemento...</label>
+		   <p th:if="${#fields.hasErrors('complement')}" th:errors="*{complement}" class="error-msg">...</p>
+		 </div>
+	 </li>
+	 
+	 <!-- CAMPO BAIRRO -->
+	 <li class="mdl-list__item">
+		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		   <input class="mdl-textfield__input" type="text" id="input-neighborhood" th:field="*{neighborhood}"/>
+		   <label class="mdl-textfield__label" for="input-neighborhood">Bairro...</label>
+		   <p th:if="${#fields.hasErrors('neighborhood')}" th:errors="*{neighborhood}" class="error-msg">...</p>
+		 </div>
+	 </li>
+	 
+	 <!-- CAMPO CIDADE -->
+	 <li class="mdl-list__item">
+		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		   <input class="mdl-textfield__input" type="text" id="input-city" th:field="*{city}"/>
+		   <label class="mdl-textfield__label" for="input-city">Cidade...</label>
+		   <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="error-msg">...</p>
+		 </div>
+	 </li>
+	 
+	 <!-- CAMPO ESTADO -->
+	 <li class="mdl-list__item">
+		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		   <input class="mdl-textfield__input" type="text" id="input-state" th:field="*{state}"/>
+		   <label class="mdl-textfield__label" for="input-state">Estado...</label>
+		   <p th:if="${#fields.hasErrors('state')}" th:errors="*{state}" class="error-msg">...</p>
+		 </div>
+	 </li>
+	 
+	 <!-- CAMPO PREÇO -->
+	 <li class="mdl-list__item">
+		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		   <input class="mdl-textfield__input" type="text" id="input-price" th:field="*{price}"/>
+		   <label class="mdl-textfield__label" for="input-price">Preço...</label>
+		   <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-msg">...</p>
+		 </div>
+	 </li>
+	 
+	 <!-- CAMPO PROPRIETÁRIO 
+	 <li class="mdl-list__item">
+		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		   <input class="mdl-textfield__input" type="text" id="input-owner" th:field="*{owner}"/>
+		   <label class="mdl-textfield__label" for="input-owner">Proprietário...</label>
+		   <p th:if="${#fields.hasErrors('owner')}" th:errors="*{owner}" class="error-msg">...</p>
+		 </div>
+	 </li>
+	 -->
+ 
+	 <li class="mdl-list__item">
+ 
+	 	<table>
+	 	  <tr>
+	 	  	<td style="color:rgb(96,125,139)">
+	 	  		<span th:text="Tipo">...</span>						 	  					 	  
+	 	  	</td>
+	 	  </tr>					 	
+		   <th:block th:each="type, stat : ${types}">
+		      <tr>
+		      	<td>
+			   <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" th:for="${__${type.id}__}">
+			   <input type="checkbox"									  	 
+				  th:id="${__${type.id}__}"
+				  th:name="|types[${stat.index}]|"
+				  th:value="${type.id}"									  		   
+				  class="mdl-checkbox__input" 
+				  th:checked="${type.checked}"/>
+ 
+			    <span class="mdl-checkbox__label" th:text="${type.description}">...</span>
+			    </label>
+		      	</td>
+		      </tr>							      							      
+		   </th:block>
+		   <tr><td><p th:if="${#fields.hasErrors('types')}" th:errors="*{types}" class="error-msg">...</p></td></tr>
+		</table>
+	 </li>
+	 
+	 <li class="mdl-list__item">
+ 
+	 	<table>
+	 	  <tr>
+	 	  	<td style="color:rgb(96,125,139)">
+	 	  		<span th:text="Proprietário do Imovel">...</span>						 	  					 	  
+	 	  	</td>
+	 	  </tr>					 	
+		   <th:block th:each="owner, stat : ${owners}">
+		      <tr>
+		      	<td>
+			   <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" th:for="${__${owner.id}__}">
+			   <input type="checkbox"									  	 
+				  th:id="${__${owner.id}__}"
+				  th:name="|owners[${stat.index}]|"
+				  th:value="${owner.id}"									  		   
+				  class="mdl-checkbox__input" 
+				  th:checked="${owner.checked}"/>
+ 
+			    <span class="mdl-checkbox__label" th:text="${owner.name}">...</span>
+			    </label>
+		      	</td>
+		      </tr>							      							      
+		   </th:block>
+		   <tr><td><p th:if="${#fields.hasErrors('owners')}" th:errors="*{owners}" class="error-msg">...</p></td></tr>
+		</table>
+	 </li>
+      </ul>
+  </fieldset>			 
+  <div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+       <div class="mdl-cell mdl-cell--4-col" style="padding-right:10px;">
+	   <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Salvar</button>
+       </div>
+  </div>  
+</form>
+ 
+</div>
+ 
+</section>	
+<div class="mdl-layout-spacer"></div>
+</div>
+ 
+</section>
+ 
+</body>
+ 
+</html>

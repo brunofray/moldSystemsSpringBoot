@@ -31,7 +31,9 @@
  
      <div class="mdl-cell mdl-cell--12-col">
 	<div class="alinhar-centro">
-	  <span style="padding-left:75px;">Editar cadastro de Imóvel</span>			  
+	<b>
+	  <span style="padding-left:75px;">Editar cadastro de Imóvel</span>			
+	</b>  
         </div>			
  
        <form action="#" id="form-cadaster" th:action="@{../saveAlter}" th:object="${immobileEntity}" method="post">
@@ -43,15 +45,15 @@
 	     
 	     <li class="mdl-list__item">			 		  
 		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-	            <input class="mdl-textfield__input" type="text" id="input-id" th:field="*{id}" readonly="readonly"/>
-		    <label class="mdl-textfield__label" for="input-id">Código...</label>							   
+	            <input class="mdl-textfield__input" type="text" id="id" th:field="*{id}" readonly="readonly"/>
+		    <label class="mdl-textfield__label" for="id">Código...</label>							   
 		 </div>
 	     </li>			 						 
 	     <!-- CAMPO CEP -->
 	 <li class="mdl-list__item">			 		  
 		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-		   <input class="mdl-textfield__input" type="text" th:field="*{cep}" maxlength="9"/>
-    	   <label class="mdl-textfield__label" for="input-street">Cep...</label>
+		   <input class="mdl-textfield__input" type="text" id="cep" th:field="*{cep}" maxlength="9"/>
+    	   <label class="mdl-textfield__label" for="cep">Cep...</label>
     	   <script type="text/javascript">
    				$("#cep").mask("00000-000");
     	   </script>
@@ -62,8 +64,8 @@
 	 <!-- CAMPO RUA -->
 	 <li class="mdl-list__item">
 		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-		   <input class="mdl-textfield__input" type="text" id="input-street" th:field="*{street}"/>
-		   <label class="mdl-textfield__label" for="input-street">Rua...</label>
+		   <input class="mdl-textfield__input" type="text" id="street" th:field="*{street}" title="O campo rua não pode conter números"/>
+		   <label class="mdl-textfield__label" for="street">Rua...</label>
 		   <p th:if="${#fields.hasErrors('street')}" th:errors="*{street}" class="error-msg">...</p>
 		 </div>
 	 </li>
@@ -71,16 +73,16 @@
 	 <!-- CAMPO NUMERO -->
 	 <li class="mdl-list__item">
 		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-		   <input class="mdl-textfield__input" type="text" id="input-number" th:field="*{number}" pattern="\d*" maxlength="4"/>
-		   <label class="mdl-textfield__label" for="input-number">Número...</label>
+		   <input class="mdl-textfield__input" type="text" id="number" th:field="*{number}" pattern="\d*" maxlength="4"/>
+		   <label class="mdl-textfield__label" for="number">Número...</label>
 		   <p th:if="${#fields.hasErrors('number')}" th:errors="*{number}" class="error-msg">...</p>
 		 </div>
 	 </li>
 	 <!-- CAMPO COMPLEMENTO -->
 	 <li class="mdl-list__item">
 		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-		   <input class="mdl-textfield__input" type="text" id="input-complement" th:field="*{complement}"/>
-		   <label class="mdl-textfield__label" for="input-complement">Complemento...</label>
+		   <input class="mdl-textfield__input" type="text" id="complement" th:field="*{complement}"/>
+		   <label class="mdl-textfield__label" for="complement">Complemento...</label>
 		   <p th:if="${#fields.hasErrors('complement')}" th:errors="*{complement}" class="error-msg">...</p>
 		 </div>
 	 </li>
@@ -88,8 +90,8 @@
 	 <!-- CAMPO BAIRRO -->
 	 <li class="mdl-list__item">
 		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-		   <input class="mdl-textfield__input" type="text" id="input-neighborhood" th:field="*{neighborhood}"/>
-		   <label class="mdl-textfield__label" for="input-neighborhood">Bairro...</label>
+		   <input class="mdl-textfield__input" type="text" id="neighborhood" th:field="*{neighborhood}" pattern="[^0-9]+$" title="O campo bairro não pode conter números"/>
+		   <label class="mdl-textfield__label" for="neighborhood">Bairro...</label>
 		   <p th:if="${#fields.hasErrors('neighborhood')}" th:errors="*{neighborhood}" class="error-msg">...</p>
 		 </div>
 	 </li>
@@ -97,26 +99,62 @@
 	 <!-- CAMPO CIDADE -->
 	 <li class="mdl-list__item">
 		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-		   <input class="mdl-textfield__input" type="text" id="input-city" th:field="*{city}"/>
-		   <label class="mdl-textfield__label" for="input-city">Cidade...</label>
+		   <input class="mdl-textfield__input" type="text" id="city" th:field="*{city}" pattern="[^0-9]+$" title="O campo cidade não pode conter números"/>
+		   <label class="mdl-textfield__label" for="city">Cidade...</label>
 		   <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="error-msg">...</p>
 		 </div>
 	 </li>
 	 
-	 <!-- CAMPO ESTADO -->
+	 <!-- CAMPO ESTADO 
 	 <li class="mdl-list__item">
 		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-		   <input class="mdl-textfield__input" type="text" id="input-state" th:field="*{state}"/>
-		   <label class="mdl-textfield__label" for="input-state">Estado...</label>
+		   <input class="mdl-textfield__input" type="text" id="state" th:field="*{state}" pattern="[^0-9]+$" title="O campo estado não pode conter números"/>
+		   <label class="mdl-textfield__label" for="state">Estado...</label>
 		   <p th:if="${#fields.hasErrors('state')}" th:errors="*{state}" class="error-msg">...</p>
 		 </div>
+	 </li>
+	 -->
+	 <!--  ESTADOS EM SELECT -->
+	 <li class="mdl-list__item">
+		<div class="col-md-4 mb-3">
+            <label for="state">Estado: </label>
+            <select th:field="*{state}" class="chosen-select form-control" id="state" data-placeholder="State">
+		   		<option th:value="Acre" th:text="Acre"> </option>
+		   		<option th:value="Alagoas" th:text="Alagoas"></option>
+		   		<option th:value="Amapá" th:text="Amapá"></option>
+		   		<option th:value="Amazonas" th:text="Amazonas"></option>
+		   		<option th:value="Bahia" th:text="Bahia"></option>
+		   		<option th:value="Ceará" th:text="Ceará"></option>
+		   		<option th:value="'Distrito Federal'" th:text="'Distrito Federal'"></option>
+		   		<option th:value="'Espírito Santo'" th:text="'Espírito Santo'"></option>
+		   		<option th:value="Goiás" th:text="Goiás"></option>
+		   		<option th:value="Maranhão" th:text="Maranhão"></option>
+		   		<option th:value="'Mato Grosso'" th:text="'Mato Grosso'"></option>
+		   		<option th:value="'Mato Grosso do Sul'" th:text="'Mato Grosso do Sul'"></option>
+		   		<option th:value="'Minas Gerais'" th:text="'Minas Gerais'"></option>
+		   		<option th:value="Pará" th:text="Pará"></option>
+		   		<option th:value="Paraíba" th:text="Paraíba"></option>
+		   		<option th:value="Paraná" th:text="Paraná"></option>
+		   		<option th:value="Pernambuco" th:text="Pernambuco"></option>
+		   		<option th:value="Piauí" th:text="Piauí"></option>
+		   		<option th:value="'Rio de Janeiro'" th:text="'Rio de Janeiro'"></option>
+		   		<option th:value="'Rio Grande do Norte'" th:text="'Rio Grande do Norte'"></option>
+		   		<option th:value="'Rio Grande do Sul'" th:text="'Rio Grande do Sul'"></option>
+		   		<option th:value="Rondônia" th:text="Rondônia"></option>
+		   		<option th:value="Roraima" th:text="Roraima"></option>
+		   		<option th:value="'Santa Catarina'" th:text="'Santa Catarina'"></option>
+		   		<option th:value="'São Paulo'" th:text="'São Paulo'"></option>
+		  		<option th:value="Sergipe" th:text="Sergipe"></option>
+		  		<option th:value="Tocantins" th:text="Tocantins"></option>	
+		   </select>
+		</div>
 	 </li>
 	 
 	 <!-- CAMPO PREÇO -->
 	 <li class="mdl-list__item">
 		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-		   <input class="mdl-textfield__input" type="text" id="input-price" th:field="*{price}" onkeyup="k(this);" />
-		   <label class="mdl-textfield__label" for="input-price">Preço...</label>
+		   <input class="mdl-textfield__input" type="text" id="price" th:field="*{price}" onkeyup="k(this);" />
+		   <label class="mdl-textfield__label" for="price">Preço...</label>
 		   <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-msg">...</p>
 		 </div>
 	 </li>
