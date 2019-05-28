@@ -1,4 +1,4 @@
-package com.projectMoldSystems.immobileProject.model;
+package com.projectJob.immobileProject.model;
 
 public class SearchForm {
 
