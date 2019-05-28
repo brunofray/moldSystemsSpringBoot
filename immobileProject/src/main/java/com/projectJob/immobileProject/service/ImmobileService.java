@@ -1,4 +1,4 @@
-package com.projectMoldSystems.immobileProject.service;
+package com.projectJob.immobileProject.service;
 
 import java.util.List;
 
@@ -13,12 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.projectMoldSystems.immobileProject.DAO.ImmobileDAO;
-import com.projectMoldSystems.immobileProject.entity.ImmobileEntity;
-import com.projectMoldSystems.immobileProject.entity.OwnerEntity;
-import com.projectMoldSystems.immobileProject.model.SearchForm;
-import com.projectMoldSystems.immobileProject.repository.ImmobileRepository;
-import com.projectMoldSystems.immobileProject.repository.OwnerRepository;
+import com.projectJob.immobileProject.DAO.ImmobileDAO;
+import com.projectJob.immobileProject.entity.ImmobileEntity;
+import com.projectJob.immobileProject.entity.OwnerEntity;
+import com.projectJob.immobileProject.model.SearchForm;
+import com.projectJob.immobileProject.repository.ImmobileRepository;
+import com.projectJob.immobileProject.repository.OwnerRepository;
 
 @Service
 @Transactional
