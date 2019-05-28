@@ -38,10 +38,15 @@
  
        <form action="#" id="form-cadaster" th:action="@{../saveAlter}" th:object="${immobileEntity}" method="post">
 	<fieldset>
-           <ul class="mdl-list">
-	      <li class="mdl-list__item" th:if="${msg_result}">						 	
-		 <p id="p-message-success" class="success-msg" th:text="${msg_result}" >...</p>		
-	     </li>
+    <ul class="mdl-list">
+	      			<!-- MENSAGEM A SER MOSTRADA APÓS EXECUTARMOS O POST -->
+	 <li class="mdl-list__item" th:if="${msg_result_success}">						 	
+	 	<p id="p-message" class="sucesso-msg" th:text="${msg_result_success}" >...</p>		
+	 </li>
+	 
+	 <li class="mdl-list__item" th:if="${msg_result_fail}">						 	
+	 	<p id="p-message" class="erro-msg" th:text="${msg_result_fail}" >...</p>		
+	 </li>
 	     
 	     <li class="mdl-list__item">			 		  
 		 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

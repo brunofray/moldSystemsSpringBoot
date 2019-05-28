@@ -155,20 +155,33 @@ public class ImmobileController {
 								Model model,
 								RedirectAttributes redirectAttributes) {
 //		boolean isErrorNullFields = false;
-
+		Boolean bool = false;
+		ModelAndView andView = new ModelAndView("/edit");
 		if(result.hasErrors()) {
 			List<OwnerEntity> ownerEntity = ownerService.consultType();
 			
-			model.addAttribute("owners", ownerEntity);
+			andView.addObject("owners", ownerEntity);
 			
-			model.addAttribute("immobileEntity", immobileEntity);
+			andView.addObject("immobileEntity", immobileEntity);
 			
-			return new ModelAndView("edit");
+			return andView;
 		} else {
-			immobileService.alter(immobileEntity);
+			bool = immobileService.save(immobileEntity);
 		}
-		
 		ModelAndView modelAndView = new ModelAndView("redirect:/consult");
+		if(bool == false ) {
+			redirectAttributes.addFlashAttribute("msg_result_success", "Registro alterado com sucesso!");
+		} else {
+			List<OwnerEntity> ownerEntity = ownerService.consultType();
+			
+			andView.addObject("owners", ownerEntity);
+			
+			andView.addObject("immobileEntity", immobileEntity);		
+			
+			andView.addObject("msg_result_fail", "Colisão de endereço, impossivel alterar!");
+			
+			return andView;
+		}
 
 		return modelAndView;
 	}

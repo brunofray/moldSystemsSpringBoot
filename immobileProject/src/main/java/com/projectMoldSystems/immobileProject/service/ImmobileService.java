@@ -56,8 +56,13 @@ public class ImmobileService {
 			return immobileRepository.getOne(idImmobile);
 		}
 		
-		public ImmobileEntity alter(ImmobileEntity immobileEntity) {
-			return immobileRepository.saveAndFlush(immobileEntity);
+		// JA NÃO ESTOU UTILIZANDO, O MÉTODO SAVE FUNCIONA PARA AMBOS
+		public Boolean alter(ImmobileEntity immobileEntity) {
+			Boolean bool = immobileRepository.valid(immobileEntity);
+			if(bool == false) {
+				this.immobileRepository.saveAndFlush(immobileEntity);
+			}
+			return bool;
 		}
 		
 		public List<ImmobileEntity> search(SearchForm searchForm){

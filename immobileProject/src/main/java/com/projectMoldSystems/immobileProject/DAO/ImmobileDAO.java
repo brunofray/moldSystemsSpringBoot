@@ -1,5 +1,6 @@
 package com.projectMoldSystems.immobileProject.DAO;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -77,7 +78,12 @@ public class ImmobileDAO implements ImmobileRepository{
 //					query.setParameter("street", street + "%");
 //				}
 //			}
-			entityManager.persist(immobileEntity);
+			if (immobileEntity.getId() == null) {
+				entityManager.persist(immobileEntity);
+			} else {
+				entityManager.merge(immobileEntity);
+			}
+			
 			transaction.commit();
 		} finally {
 			entityManager.close();
@@ -145,6 +151,7 @@ public class ImmobileDAO implements ImmobileRepository{
 		
 	}
 
+	// JA NÃO ESTOU USANDO, O MÉTODO SAVE FUNCIONA PARA AMBOS.
 	@Override
 	public ImmobileEntity saveAndFlush(ImmobileEntity immobileEntity) {
 		EntityManager entityManager = getEntityManager();
@@ -152,9 +159,7 @@ public class ImmobileDAO implements ImmobileRepository{
 		
 		try {
 			transaction.begin();
-			if (valid(immobileEntity) == false) {
-				immobileEntity = entityManager.merge(immobileEntity);
-			}
+			immobileEntity = entityManager.merge(immobileEntity);
 			transaction.commit();
 		} finally {
 			entityManager.close();
@@ -206,58 +211,64 @@ public class ImmobileDAO implements ImmobileRepository{
 		
 		try {
 			transaction.begin();
-			String hql = "FROM immobile";
-			Query query = entityManager.createQuery(hql);
 			
-//			immobileEntHQL = query.getResultList();
-//			String hqlV2 = "select from immobile p where p.cep = :cep" +
-//				    " and p.street = :street" +
-//				    " and p.number = :number" +
-//				    " and p.neighborhood = :neighborhood" +
-//				    " and p.complement = :complement" +
-//				    " and p.city = :city" +
-//				    " and p.state = :state";
+			String hqlV2 = "select p from immobile p where p.cep = :cep" +
+				    " and p.street = :street" +
+				    " and p.number = :number" +
+				    " and p.neighborhood = :neighborhood" +
+				    " and p.complement = :complement" +
+				    " and p.city = :city" +
+				    " and p.state = :state";
+			
+			Query queryHQL = entityManager.createQuery(hqlV2);
+				queryHQL.setParameter("cep", immobileEntity.getCep())
+				   .setParameter("street", immobileEntity.getStreet())
+				   .setParameter("number", immobileEntity.getNumber())
+				   .setParameter("neighborhood", immobileEntity.getNeighborhood())
+				   .setParameter("complement", immobileEntity.getComplement())
+				   .setParameter("city", immobileEntity.getCity())
+				   .setParameter("state", immobileEntity.getState());
+			immobileEntHQL = queryHQL.getResultList();
+			
+			if (! immobileEntHQL.isEmpty()) {
+				bool = true;
+			} 
+			
+			for (ImmobileEntity immobile : immobileEntHQL) {
+				if ( immobileEntity.getId().equals(immobile.getId())) {
+					bool = false;
+				}
+			}
+			
+//			bool = immobileEntity.equals(immobileEntHQL);
 //			
-//			
-//			Query queryHQL = entityManager.createQuery(hql);
-//				  query.setParameter("cep", immobileEntity.getCep())
-//				   .setParameter("street", immobileEntity.getStreet())
-//				   .setParameter("number", immobileEntity.getNumber())
-//				   .setParameter("neighborhood", immobileEntity.getNeighborhood())
-//				   .setParameter("complement", immobileEntity.getComplement())
-//				   .setParameter("city", immobileEntity.getCity())
-//				   .setParameter("state", immobileEntity.getState())
-//				   .getResultList();
-//				  immobileEntHQL = query.getResultList();
-				  immobileEnt = query.getResultList();
-				  
-				  for (ImmobileEntity immobile: immobileEnt) {
-					  immobile.getCep();
-					  immobile.getStreet();
-					  immobile.getNumber();
-					  immobile.getNeighborhood();
-					  immobile.getComplement();
-					  immobile.getCity();
-					  immobile.getState();
-					  ImmobileEntity immobileEntityId = entityManager.find(ImmobileEntity.class, immobile.getId());
-					  
-					   if(immobileEntity.getCep().equals(immobileEntityId.getCep())) {
-						   if(immobileEntity.getStreet().equals(immobileEntityId.getStreet())) {
-							   if(immobileEntity.getNumber().equals(immobileEntityId.getNumber())) {
-								   if(immobileEntity.getComplement().equals(immobileEntityId.getComplement())) {
-									   if(immobileEntity.getNeighborhood().equals(immobileEntityId.getNeighborhood())) {
-										   if(immobileEntity.getCity().equals(immobileEntityId.getCity())) {
-											   if(immobileEntity.getState().equals(immobileEntityId.getState())) {
-												   bool = true;
-												   break;
-											   }
-										   }
-									   }
-								   }
-							   }
-						   }
-					   }
-				  	}
+//			for (Object immobile : immobileEntHQL) {
+//				ImmobileEntity immobileEntit = (ImmobileEntity) immobile;
+//				
+//			}
+			
+			// VALIDAÇÃO FUNCIONAL DE ENDEREÇO
+//				  String hql = "FROM immobile";
+//			      Query query = entityManager.createQuery(hql);
+//				  immobileEnt = query.getResultList();
+//				  for (ImmobileEntity immobile: immobileEnt) {
+//					   if(immobileEntity.getCep().equals(immobile.getCep())) {
+//						   if(immobileEntity.getStreet().equals(immobile.getStreet())) {
+//							   if(immobileEntity.getNumber().equals(immobile.getNumber())) {
+//								   if(immobileEntity.getComplement().equals(immobile.getComplement())) {
+//									   if(immobileEntity.getNeighborhood().equals(immobile.getNeighborhood())) {
+//										   if(immobileEntity.getCity().equals(immobile.getCity())) {
+//											   if(immobileEntity.getState().equals(immobile.getState())) {
+//												   bool = true;
+//												   break;
+//											   }
+//										   }
+//									   }
+//								   }
+//							   }
+//						   }
+//					   }
+//				  	}
 				
 //			ImmobileEntity immobileEn = entityManager.find(ImmobileEntity.class, 1L);
 //			String sql = "select p from immobile p where p.street like :street";
