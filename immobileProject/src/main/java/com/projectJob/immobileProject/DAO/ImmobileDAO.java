@@ -1,4 +1,4 @@
-package com.projectMoldSystems.immobileProject.DAO;
+package com.projectJob.immobileProject.DAO;
 
 import java.math.BigDecimal;
 import java.util.List;
