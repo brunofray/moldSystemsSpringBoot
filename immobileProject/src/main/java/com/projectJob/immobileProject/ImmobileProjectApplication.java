@@ -1,4 +1,4 @@
-package com.projectMoldSystems.immobileProject;
+package com.projectJob.immobileProject;
 
 import java.util.Properties;
 
