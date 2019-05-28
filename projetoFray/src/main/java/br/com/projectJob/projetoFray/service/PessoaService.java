@@ -1,4 +1,4 @@
-package br.com.moldsystems.projetoFray.service;
+package br.com.projectJob.projetoFray.service;
 
 //import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-//import br.com.moldsystems.projetoFray.entity.PessoaEntity;
-import br.com.moldsystems.projetoFray.model.PessoaModel;
-import br.com.moldsystems.projetoFray.repository.PessoaRepository;
+import br.com.projectJob.projetoFray.model.PessoaModel;
+import br.com.projectJob.projetoFray.repository.PessoaRepository;
 
 @Service
 public class PessoaService {

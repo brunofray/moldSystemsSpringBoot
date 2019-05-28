@@ -1,4 +1,4 @@
-package br.com.moldsystems.projetoFray.entity;
+package br.com.projectJob.projetoFray.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package br.com.moldsystems.projetoFray.model;
+package br.com.projectJob.projetoFray.model;
 
 import java.io.Serializable;
 import java.util.Date;

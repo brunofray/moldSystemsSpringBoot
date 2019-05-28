@@ -1,4 +1,4 @@
-package br.com.moldsystems.projetoFray.controller;
+package br.com.projectJob.projetoFray.controller;
 
 
 import java.util.Optional;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.moldsystems.projetoFray.model.PessoaModel;
-import br.com.moldsystems.projetoFray.service.PessoaService;
+import br.com.projectJob.projetoFray.model.PessoaModel;
+import br.com.projectJob.projetoFray.service.PessoaService;
 
 @Controller
 public class PessoaController {

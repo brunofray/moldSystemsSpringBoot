@@ -1,4 +1,4 @@
-package br.com.moldsystems.projetoFray;
+package br.com.projectJob.projetoFray;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
