@@ -16,11 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.projectMoldSystems.immobileProject.entity.ImmobileEntity;
-import com.projectMoldSystems.immobileProject.entity.OwnerEntity;
-import com.projectMoldSystems.immobileProject.hibernate.util.HibernateUtil;
-import com.projectMoldSystems.immobileProject.model.SearchForm;
-import com.projectMoldSystems.immobileProject.repository.ImmobileRepository;
+import com.projectJob.immobileProject.entity.ImmobileEntity;
+import com.projectJob.immobileProject.entity.OwnerEntity;
+import com.projectJob.immobileProject.hibernate.util.HibernateUtil;
+import com.projectJob.immobileProject.model.SearchForm;
+import com.projectJob.immobileProject.repository.ImmobileRepository;
 
 @Repository
 @Transactional
