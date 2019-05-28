@@ -1,4 +1,4 @@
-package com.projectMoldSystems.immobileProject.DAO;
+package com.projectJob.immobileProject.DAO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -10,17 +10,14 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.projectMoldSystems.immobileProject.entity.ImmobileEntity;
-import com.projectMoldSystems.immobileProject.entity.OwnerEntity;
-import com.projectMoldSystems.immobileProject.hibernate.util.HibernateUtil;
-import com.projectMoldSystems.immobileProject.model.SearchForm;
-import com.projectMoldSystems.immobileProject.repository.ImmobileRepository;
+import com.projectJob.immobileProject.entity.ImmobileEntity;
+import com.projectJob.immobileProject.model.SearchForm;
+import com.projectJob.immobileProject.repository.ImmobileRepository;
 
 @Repository
 @Transactional
@@ -205,14 +202,14 @@ public class ImmobileDAO implements ImmobileRepository{
 	public Boolean valid(ImmobileEntity immobileEntity) {
 		EntityManager entityManager = getEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
-		List<ImmobileEntity> immobileEnt = null;
+//		List<ImmobileEntity> immobileEnt = null;
 		List<ImmobileEntity> immobileEntHQL = null;
 		Boolean bool = false;
 		
 		try {
 			transaction.begin();
 			
-			String hqlV2 = "select p from immobile p where p.cep = :cep" +
+			String hql = "select p from immobile p where p.cep = :cep" +
 				    " and p.street = :street" +
 				    " and p.number = :number" +
 				    " and p.neighborhood = :neighborhood" +
@@ -220,16 +217,16 @@ public class ImmobileDAO implements ImmobileRepository{
 				    " and p.city = :city" +
 				    " and p.state = :state";
 			
-			Query queryHQL = entityManager.createQuery(hqlV2);
-				queryHQL.setParameter("cep", immobileEntity.getCep())
+			Query query = entityManager.createQuery(hql);
+				query.setParameter("cep", immobileEntity.getCep())
 				   .setParameter("street", immobileEntity.getStreet())
 				   .setParameter("number", immobileEntity.getNumber())
 				   .setParameter("neighborhood", immobileEntity.getNeighborhood())
 				   .setParameter("complement", immobileEntity.getComplement())
 				   .setParameter("city", immobileEntity.getCity())
 				   .setParameter("state", immobileEntity.getState());
-			immobileEntHQL = queryHQL.getResultList();
-			
+			immobileEntHQL = query.getResultList();
+		
 			if (! immobileEntHQL.isEmpty()) {
 				bool = true;
 			} 

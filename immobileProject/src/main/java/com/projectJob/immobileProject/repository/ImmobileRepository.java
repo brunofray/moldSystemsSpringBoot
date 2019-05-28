@@ -1,10 +1,9 @@
-package com.projectMoldSystems.immobileProject.repository;
+package com.projectJob.immobileProject.repository;
 
 import java.util.List;
 
-import com.projectMoldSystems.immobileProject.entity.ImmobileEntity;
-import com.projectMoldSystems.immobileProject.entity.OwnerEntity;
-import com.projectMoldSystems.immobileProject.model.SearchForm;
+import com.projectJob.immobileProject.entity.ImmobileEntity;
+import com.projectJob.immobileProject.model.SearchForm;
 
 
 public interface ImmobileRepository {

@@ -1,9 +1,6 @@
-package com.projectMoldSystems.immobileProject.entity;
+package com.projectJob.immobileProject.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.security.acl.Owner;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.ConstraintMode;

@@ -1,16 +1,16 @@
-package com.projectMoldSystems.immobileProject.repository;
+package com.projectJob.immobileProject.repository;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.projectMoldSystems.immobileProject.entity.OwnerEntity;
+import com.projectJob.immobileProject.entity.OwnerEntity;
 
 @Repository
-public interface OwnerRepository extends JpaRepository<OwnerEntity, Long>{
+public interface OwnerRepository{
 
-	@Query("select p from owner p where p.name like %?1%")
-	List<OwnerEntity> findByName(String name);
+//	@Query("select p from owner p where p.name like %?1%")
+//	List<OwnerEntity> findByName(String name);
+	
+	List<OwnerEntity> findAll();
 }

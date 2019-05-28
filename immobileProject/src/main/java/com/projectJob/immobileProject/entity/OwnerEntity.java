@@ -1,4 +1,4 @@
-package com.projectMoldSystems.immobileProject.entity;
+package com.projectJob.immobileProject.entity;
 
 import java.util.List;
 

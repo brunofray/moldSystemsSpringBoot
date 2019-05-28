@@ -1,4 +1,4 @@
-package com.projectMoldSystems.immobileProject;
+package com.projectJob.immobileProject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

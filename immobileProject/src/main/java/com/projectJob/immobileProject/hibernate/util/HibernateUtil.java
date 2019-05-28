@@ -1,4 +1,4 @@
-package com.projectMoldSystems.immobileProject.hibernate.util;
+package com.projectJob.immobileProject.hibernate.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

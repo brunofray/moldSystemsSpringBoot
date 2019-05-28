@@ -1,42 +1,27 @@
-package com.projectMoldSystems.immobileProject.controller;
+package com.projectJob.immobileProject.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 import javax.validation.Valid;
-import javax.annotation.PostConstruct;
-import javax.persistence.EntityManagerFactory;
-import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.projectMoldSystems.immobileProject.entity.ImmobileEntity;
-import com.projectMoldSystems.immobileProject.entity.OwnerEntity;
-import com.projectMoldSystems.immobileProject.model.SearchForm;
-import com.projectMoldSystems.immobileProject.repository.ImmobileRepository;
-import com.projectMoldSystems.immobileProject.repository.OwnerRepository;
-import com.projectMoldSystems.immobileProject.service.ImmobileService;
-import com.projectMoldSystems.immobileProject.service.OwnerService;
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Map;
-
-import net.sf.jasperreports.engine.JRException;
+import com.projectJob.immobileProject.entity.ImmobileEntity;
+import com.projectJob.immobileProject.entity.OwnerEntity;
+import com.projectJob.immobileProject.model.SearchForm;
+import com.projectJob.immobileProject.service.ImmobileService;
+import com.projectJob.immobileProject.service.OwnerService;
 
 @Controller
 public class ImmobileController {
@@ -45,16 +30,7 @@ public class ImmobileController {
 	private ImmobileService immobileService;
 	
 	@Autowired
-	private ImmobileRepository immobileRepository;
-	
-	@Autowired
 	private OwnerService ownerService;
-	
-	@Autowired
-	private OwnerRepository ownerRepository;
-	
-	@Autowired
-	private DataSource dataSource;
 	
 	@RequestMapping(value="/newCadaster", method= RequestMethod.GET)
 	public ModelAndView newCadaster(Model model) {
