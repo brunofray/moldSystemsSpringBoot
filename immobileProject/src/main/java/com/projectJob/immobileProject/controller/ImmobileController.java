@@ -1,4 +1,4 @@
-package com.projectMoldSystems.immobileProject.controller;
+package com.projectJob.immobileProject.controller;
 
 import java.util.ArrayList;
 import java.util.List;
