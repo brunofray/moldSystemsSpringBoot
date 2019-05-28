@@ -20,8 +20,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.projectJob.immobileProject.entity.ImmobileEntity;
 import com.projectJob.immobileProject.entity.OwnerEntity;
 import com.projectJob.immobileProject.model.SearchForm;
+<<<<<<< HEAD
 import com.projectJob.immobileProject.service.ImmobileService;
 import com.projectJob.immobileProject.service.OwnerService;
+=======
+import com.projectJob.immobileProject.repository.ImmobileRepository;
+import com.projectJob.immobileProject.repository.OwnerRepository;
+import com.projectJob.immobileProject.service.ImmobileService;
+import com.projectJob.immobileProject.service.OwnerService;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Map;
+
+import net.sf.jasperreports.engine.JRException;
+>>>>>>> 2cd6e787920a66e6a77b27bfffbd44fb81b353b3
 
 @Controller
 public class ImmobileController {

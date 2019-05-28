@@ -3,6 +3,10 @@ package com.projectJob.immobileProject.repository;
 import java.util.List;
 
 import com.projectJob.immobileProject.entity.ImmobileEntity;
+<<<<<<< HEAD
+=======
+import com.projectJob.immobileProject.entity.OwnerEntity;
+>>>>>>> 2cd6e787920a66e6a77b27bfffbd44fb81b353b3
 import com.projectJob.immobileProject.model.SearchForm;
 
 

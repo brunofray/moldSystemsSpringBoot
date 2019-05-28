@@ -8,6 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.projectJob.immobileProject.DAO.ImmobileDAO;
 import com.projectJob.immobileProject.entity.ImmobileEntity;
+<<<<<<< HEAD
+=======
+import com.projectJob.immobileProject.entity.OwnerEntity;
+>>>>>>> 2cd6e787920a66e6a77b27bfffbd44fb81b353b3
 import com.projectJob.immobileProject.model.SearchForm;
 import com.projectJob.immobileProject.repository.ImmobileRepository;
 import com.projectJob.immobileProject.repository.OwnerRepository;
